@@ -1,0 +1,117 @@
+﻿<Window
+    Height="400"
+    Title="MainWindow"
+    Width="300"
+    mc:Ignorable="d"
+    x:Class="ClientServerMessager.Server.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ClientServerMessager.Server.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:ClientServerMessager.Server.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Column="1">
+                <Label DockPanel.Dock="Top">События</Label>
+                <TextBox
+                    HorizontalScrollBarVisibility="Disabled"
+                    IsReadOnly="True"
+                    Text="{Binding EventText}"
+                    TextAlignment="Left"
+                    TextChanged="OnTextChanged"
+                    TextWrapping="Wrap"
+                    VerticalContentAlignment="Bottom" />
+            </DockPanel>
+
+            <UniformGrid Columns="1" Grid.Row="1">
+                <UniformGrid Rows="1">
+                    <DockPanel>
+                        <Label Content="IP:" DockPanel.Dock="Left" />
+                        <TextBox IsEnabled="{Binding IsServerNotWorking}" Text="{Binding Ip}" />
+                    </DockPanel>
+                    <DockPanel>
+                        <Label
+                            Content="Port:"
+                            DockPanel.Dock="Left"
+                            IsEnabled="{Binding IsServerNotWorking}" />
+                        <TextBox Text="{Binding Port}" />
+                    </DockPanel>
+                </UniformGrid>
+                <UniformGrid Rows="1">
+                    <Button Command="{Binding StartServer}" IsEnabled="{Binding IsServerNotWorking}">Запустить сервер</Button>
+                    <Button Command="{Binding StopServer}">Остановить сервер</Button>
+                </UniformGrid>
+            </UniformGrid>
+        </Grid>
+    </Grid>
+
+    <!--     <Grid> -->
+    <!--     <Grid.ColumnDefinitions> -->
+    <!--         <ColumnDefinition Width="*" /> -->
+    <!--         <ColumnDefinition Width="*" /> -->
+    <!--     </Grid.ColumnDefinitions> -->
+    <!--    -->
+    <!--     <Grid> -->
+    <!--         <Grid.RowDefinitions> -->
+    <!--             <RowDefinition Height="5*" /> -->
+    <!--             <RowDefinition Height="1*" /> -->
+    <!--         </Grid.RowDefinitions> -->
+    <!--    -->
+    <!--         <DockPanel> -->
+    <!--             <Label DockPanel.Dock="Top">Файлы и папки</Label> -->
+    <!--  <ComboBox  -->
+    <!--  DockPanel.Dock="Top"  -->
+    <!--  IsSynchronizedWithCurrentItem="True"  -->
+    <!--  ItemsSource="{Binding Drives}"  -->
+    <!--  SelectedIndex="{Binding DriveIndex, Mode=TwoWay}" />  -->
+    <!--             <ListBox ItemsSource="{Binding Files}" SelectedIndex="{Binding FileIndex}" /> -->
+    <!--         </DockPanel> -->
+    <!--    -->
+    <!--         <UniformGrid Columns="1" Grid.Row="1"> -->
+    <!--             <UniformGrid Rows="1"> -->
+    <!--                 <DockPanel> -->
+    <!--                     <Label Content="IP:" DockPanel.Dock="Left" /> -->
+    <!--                     <TextBox IsEnabled="{Binding IsServerNotWorking}" Text="{Binding Ip}" /> -->
+    <!--                 </DockPanel> -->
+    <!--                 <DockPanel> -->
+    <!--  <Label  -->
+    <!--  Content="Port:"  -->
+    <!--  DockPanel.Dock="Left"  -->
+    <!--  IsEnabled="{Binding IsServerNotWorking}" />  -->
+    <!--                     <TextBox Text="{Binding Port}" /> -->
+    <!--                 </DockPanel> -->
+    <!--             </UniformGrid> -->
+    <!--             <UniformGrid Rows="1"> -->
+    <!--                 <Button Command="{Binding StartServer}" IsEnabled="{Binding IsServerNotWorking}">Запустить сервер</Button> -->
+    <!--                 <Button Command="{Binding StopServer}">Остановить сервер</Button> -->
+    <!--             </UniformGrid> -->
+    <!--             <UniformGrid Rows="1"> -->
+    <!--                 <Button>Отправить клиентам</Button> -->
+    <!--             </UniformGrid> -->
+    <!--         </UniformGrid> -->
+    <!--     </Grid> -->
+    <!--    -->
+    <!--     <DockPanel Grid.Column="1"> -->
+    <!--         <Label DockPanel.Dock="Top">События</Label> -->
+    <!--  <TextBox  -->
+    <!--  IsReadOnly="True"  -->
+    <!--  Text="{Binding EventText}"  -->
+    <!--  TextAlignment="Left"  -->
+    <!--  VerticalContentAlignment="Bottom" />  -->
+    <!--     </DockPanel> -->
+    <!--    -->
+    <!-- </Grid> -->
+</Window>

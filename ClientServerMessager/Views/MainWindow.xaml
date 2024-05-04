@@ -1,0 +1,83 @@
+﻿<Window
+    Height="450"
+    Title="MainWindow"
+    Width="800"
+    mc:Ignorable="d"
+    x:Class="ClientServerMessager.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ClientServerMessager.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:ClientServerMessager.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <DockPanel>
+                <Label DockPanel.Dock="Top">Файлы и папки</Label>
+                <ComboBox
+                    DockPanel.Dock="Top"
+                    ItemsSource="{Binding Drives}"
+                    SelectedIndex="{Binding DriveIndex}" />
+                <ListBox ItemsSource="{Binding Files}" SelectedIndex="{Binding FileIndex}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding}">
+                                <Label.InputBindings>
+                                    <MouseBinding
+                                        Command="{Binding Path=DataContext.ChooseFile, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                                        CommandParameter="{Binding}"
+                                        MouseAction="LeftDoubleClick" />
+                                </Label.InputBindings>
+                            </Label>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+
+            <UniformGrid Columns="1" Grid.Row="1">
+                <UniformGrid Rows="1">
+                    <DockPanel>
+                        <Label Content="IP:" DockPanel.Dock="Left" />
+                        <TextBox IsEnabled="{Binding IsServerNotWorking}" Text="{Binding Ip}" />
+                    </DockPanel>
+                    <DockPanel>
+                        <Label
+                            Content="Port:"
+                            DockPanel.Dock="Left"
+                            IsEnabled="{Binding IsServerNotWorking}" />
+                        <TextBox Text="{Binding Port}" />
+                    </DockPanel>
+                </UniformGrid>
+                <UniformGrid Rows="1">
+                    <Button Command="{Binding StartServer}" IsEnabled="{Binding IsServerNotWorking}">Подключится</Button>
+                    <Button>Отключится</Button>
+                </UniformGrid>
+                <UniformGrid Rows="1">
+                    <Button Command="{Binding Send}">Отправить серверу</Button>
+                </UniformGrid>
+            </UniformGrid>
+        </Grid>
+
+        <DockPanel Grid.Column="1">
+            <Label DockPanel.Dock="Top">События</Label>
+            <TextBox
+                IsReadOnly="True"
+                Text="{Binding EventText}"
+                TextAlignment="Left"
+                VerticalContentAlignment="Bottom" />
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,535 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="LighterRed">#F56E8B</SolidColorBrush>
+    <SolidColorBrush x:Key="LightRed">#F53D65</SolidColorBrush>
+    <SolidColorBrush x:Key="Red">#EC0033</SolidColorBrush>
+    <SolidColorBrush x:Key="Snow">#fffbff</SolidColorBrush>
+    <SolidColorBrush x:Key="BlackRed">#B12C49</SolidColorBrush>
+    <SolidColorBrush x:Key="DarkRed">#990021</SolidColorBrush>
+    <SolidColorBrush x:Key="SnowRed">#fdd9d9</SolidColorBrush>
+
+    <Color x:Key="ColorLighterRed">#F56E8B</Color>
+    <Color x:Key="ColorLightRed">#F53D65</Color>
+    <Color x:Key="ColorRed">#EC0033</Color>
+    <Color x:Key="ColorSnow">#fffbff</Color>
+    <Color x:Key="ColorBlackRed">#B12C49</Color>
+    <Color x:Key="ColorDarkRed">#990021</Color>
+    <Color x:Key="ColorSnowRed">#fdd9d9</Color>
+
+    <!--<ControlTemplate x:Key="validationFailed">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Foreground="Red"></TextBlock>
+        </StackPanel>
+    </ControlTemplate>-->
+
+    <Style TargetType="TextBox">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border
+                        Background="Transparent"
+                        BorderThickness="0,0,0,4"
+                        CornerRadius="2"
+                        x:Name="border">
+                        <ScrollViewer
+                            Focusable="false"
+                            HorizontalScrollBarVisibility="Hidden"
+                            VerticalScrollBarVisibility="Hidden"
+                            x:Name="PART_ContentHost" />
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" SpreadMethod="Pad" StartPoint="0.5,0">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform Angle="300.256" CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Color="{StaticResource ColorRed}" Offset="0" x:Name="firstBrush" />
+                                <GradientStop Color="{StaticResource ColorBlackRed}" Offset="1" x:Name="secondBrush" />
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="trueOver">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.3"
+                                            Storyboard.TargetName="firstBrush"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorLightRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.5"
+                                            Storyboard.TargetName="secondBrush"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorLighterRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="trueOver" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="falseOver">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.3"
+                                            Storyboard.TargetName="firstBrush"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.5"
+                                            Storyboard.TargetName="secondBrush"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="falseOver" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style TargetType="Button" x:Key="JordanButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        TextBlock.FontFamily="Consolas"
+                        TextBlock.FontSize="20"
+                        TextBlock.FontWeight="Medium"
+                        TextBlock.Foreground="{StaticResource Snow}"
+                        x:Name="border">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" SpreadMethod="Pad" StartPoint="0.5,0">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                        <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                        <RotateTransform Angle="300.256" CenterX="0.5" CenterY="0.5" />
+                                        <TranslateTransform />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Color="{StaticResource ColorRed}" Offset="0" x:Name="first" />
+                                <GradientStop Color="{StaticResource ColorDarkRed}" Offset="1" x:Name="second" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="over">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="first"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorLighterRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="second"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorLightRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="over" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="notover">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.3"
+                                            Storyboard.TargetName="first"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.3"
+                                            Storyboard.TargetName="second"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="notover" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+            </Grid.ColumnDefinitions>
+            <Border
+                Background="Transparent"
+                BorderThickness="0,0,0,1"
+                CornerRadius="0"
+                Grid.ColumnSpan="2"
+                Name="Border">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0, 0.5">
+                        <GradientStop Color="{StaticResource ColorLightRed}" Offset="0" />
+                        <GradientStop Color="{StaticResource ColorLighterRed}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+            </Border>
+            <Border
+                BorderThickness="3"
+                CornerRadius="0, 0, 0, 0"
+                Grid.Column="1"
+                Margin="1,1,1,1"
+                Name="ButtonBorder">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="{StaticResource ColorSnowRed}" Offset="0" />
+                        <GradientStop Color="{StaticResource ColorLighterRed}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0, 0.5">
+                        <GradientStop Color="{StaticResource ColorLightRed}" Offset="0" />
+                        <GradientStop Color="{StaticResource ColorLighterRed}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+            </Border>
+            <Path
+                Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+                Fill="#444"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                Name="Arrow"
+                VerticalAlignment="Center" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="WhiteSmoke" />
+            </Trigger>
+            <Trigger Property="ToggleButton.IsChecked" Value="True">
+                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="WhiteSmoke" />
+                <Setter Property="Shape.Fill" TargetName="Arrow" Value="#FF8D979E" />
+            </Trigger>
+            <Trigger Property="UIElement.IsEnabled" Value="False">
+                <Setter Property="Panel.Background" TargetName="Border" Value="{StaticResource DarkRed}" />
+                <Setter Property="Panel.Background" TargetName="ButtonBorder" Value="{StaticResource SnowRed}" />
+                <Setter Property="Border.BorderBrush" TargetName="ButtonBorder" Value="{StaticResource LightRed}" />
+                <Setter Property="TextElement.Foreground" Value="{StaticResource BlackRed}" />
+                <Setter Property="Shape.Fill" TargetName="Arrow" Value="#999" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style TargetType="{x:Type ComboBox}" x:Key="ComboBoxFlatStyle">
+        <Setter Property="UIElement.SnapsToDevicePixels" Value="True" />
+        <Setter Property="FrameworkElement.OverridesDefaultStyle" Value="True" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="TextElement.Foreground" Value="Black" />
+        <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton
+                            ClickMode="Press"
+                            Focusable="False"
+                            Grid.Column="2"
+                            IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            Name="ToggleButton"
+                            Template="{StaticResource ComboBoxToggleButtonTemplate}" />
+                        <ContentPresenter
+                            Content="{TemplateBinding ComboBox.SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding ComboBox.SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            HorizontalAlignment="Left"
+                            IsHitTestVisible="False"
+                            Margin="5,3,23,3"
+                            Name="ContentSite"
+                            VerticalAlignment="Center" />
+                        <TextBox
+                            Background="Transparent"
+                            Focusable="True"
+                            FontFamily="Cascadia Mono"
+                            FontSize="18"
+                            Foreground="{StaticResource UltraViolet}"
+                            HorizontalAlignment="Center"
+                            IsReadOnly="{TemplateBinding IsReadOnly}"
+                            Margin="3,3,23,3"
+                            Name="PART_EditableTextBox"
+                            VerticalAlignment="Center"
+                            Visibility="Hidden">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Border Focusable="False" Name="PART_ContentHost" />
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                        <!--  Popup showing items  -->
+                        <Popup
+                            AllowsTransparency="True"
+                            Focusable="False"
+                            IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
+                            Name="Popup"
+                            Placement="Bottom"
+                            PopupAnimation="Slide">
+                            <Grid
+                                MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}"
+                                MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
+                                Name="DropDown"
+                                SnapsToDevicePixels="True">
+                                <Border
+                                    Background="White"
+                                    BorderBrush="{StaticResource BlackRed}"
+                                    BorderThickness="1,1,1,1"
+                                    CornerRadius="0"
+                                    Margin="0,1,0,0"
+                                    Name="DropDownBorder" />
+                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ItemsControl.HasItems" Value="False">
+                            <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95" />
+                        </Trigger>
+                        <Trigger Property="UIElement.IsEnabled" Value="False">
+                            <Setter Property="TextElement.Foreground" Value="{StaticResource SnowRed}" />
+                        </Trigger>
+                        <Trigger Property="ItemsControl.IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                        </Trigger>
+                        <Trigger Property="ComboBox.IsEditable" Value="True">
+                            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+                            <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible" />
+                            <Setter Property="UIElement.Visibility" TargetName="ContentSite" Value="Hidden" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ListBoxItem}" x:Key="SelectionList">
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="Bd">
+                        <ContentPresenter
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="1, 0.5" StartPoint="0, 0.5">
+                                <GradientStop Color="Transparent" Offset="0" x:Name="zero" />
+                                <GradientStop Color="Transparent" Offset="0.12" x:Name="first" />
+                                <GradientStop Color="{StaticResource ColorBlackRed}" Offset="1" x:Name="second" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="notselected">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="zero"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorDarkRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="first"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="second"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="notselected" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="over">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="zero"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorDarkRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="first"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorDarkRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="second"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="over" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="False" />
+                                <Condition Property="IsSelected" Value="False" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="notover">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="zero"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="first"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="second"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="notover" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard x:Name="selected">
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="zero"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorDarkRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="first"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorDarkRed}" />
+                                        <ColorAnimation
+                                            Duration="0:0:0:0.6"
+                                            Storyboard.TargetName="second"
+                                            Storyboard.TargetProperty="Color"
+                                            To="{StaticResource ColorBlackRed}" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="selected" />
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label" x:Key="MunselUltraVioletLabel">
+        <Setter Property="FontFamily" Value="Cascadia Mono" />
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="1, 0.5" StartPoint="0, 0.5">
+                    <GradientStop Color="{StaticResource ColorLightRed}" Offset="0.3" />
+                    <GradientStop Color="{StaticResource ColorBlackRed}" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--<Style x:Key="chkBase" TargetType="CheckBox">
+        <Setter Property="IsChecked" Value="False"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#999"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <DockPanel  Background="{TemplateBinding Background}" ToolTip="{TemplateBinding Content}" LastChildFill="False" Width="{TemplateBinding Width}">
+                        <Image Margin="2 0 0 0" DockPanel.Dock="Left" x:Name="_img"  Stretch="None" />
+                        <TextBlock DockPanel.Dock="Left" Foreground="{TemplateBinding Foreground}" Margin="2 0 0 0" VerticalAlignment="Center" Text="{Binding Content,RelativeSource={RelativeSource TemplatedParent}}" />
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="_img" Property="Source" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="_img" Property="Source" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+</ResourceDictionary>
