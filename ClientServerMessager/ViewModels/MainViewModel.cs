@@ -1,11 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
 using System.Net;
 using System.Text.Json;
 using ClientServerMessager.Model.Clients;
 using ClientServerMessager.Model.Messaging;
-using ClientServerMessager.Model.Servers;
 using ClientServerMessager.ViewModels.Commands;
 
 namespace ClientServerMessager.ViewModels;
@@ -92,6 +89,9 @@ public class MainViewModel : AbstractViewModel
 
     #region Commands
 
+    /// <summary>
+    /// Команда подключения к серверу. 
+    /// </summary>
     public Command StartServer => new(async (_, _) =>
     {
         if (!string.IsNullOrEmpty(Ip) && !string.IsNullOrEmpty(Port))
@@ -119,6 +119,9 @@ public class MainViewModel : AbstractViewModel
 
     public RelayCommand ChooseFile => new(async parameter => { await SendFile(parameter.ToString()); });
 
+    /// <summary>
+    /// Событие при получении сообщения от клиента. Вывод отправленных путей в приложении.
+    /// </summary>
     private async void OnClientReceivedMessage(object? sender, string s)
     {
         try

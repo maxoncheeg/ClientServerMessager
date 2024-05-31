@@ -83,6 +83,9 @@ public class MainViewModel : AbstractViewModel
 
     #region Commands
 
+    /// <summary>
+    /// Запуск сервера.
+    /// </summary>
     public Command StartServer => new((_, _) =>
     {
         if (!string.IsNullOrEmpty(Ip) && !string.IsNullOrEmpty(Port))
@@ -108,11 +111,17 @@ public class MainViewModel : AbstractViewModel
         }
     });
 
+    /// <summary>
+    /// Получение сервером сообщения. Если это корректный путь, то отправка клиенту файлов лежащих в этой директории.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="line"></param>
     private async void OnServerReceivedMessage(object? sender, string line)
     {
         line = line.Substring(0, line.IndexOf('\0'));
         
         IClient client = sender as IClient;
+        // Если есть точка, значит клиент хочет вернуться в самое начало, к выбору диска.
         if (line.Equals("."))
         {
             EventText = EventText + Environment.NewLine + $"({client.Name} {client.SocketClient.RemoteEndPoint}) запросил диски";
@@ -125,6 +134,7 @@ public class MainViewModel : AbstractViewModel
         }
         else if (line.IndexOf('.') != -1)
         {
+            // Если файл текстовый, прочитать и отправить его содержимое.
             if (line.Contains(".txt"))
             {
                 try
@@ -142,6 +152,7 @@ public class MainViewModel : AbstractViewModel
         }
         else
         {
+            // Если это просто путь, то отправить все файлы и папки в этой директории.
             EventText = EventText + Environment.NewLine + $"({client.Name} {client.SocketClient.RemoteEndPoint}) запросил содержимое {line}";
             try
             {
@@ -158,6 +169,9 @@ public class MainViewModel : AbstractViewModel
         }
     }
 
+    /// <summary>
+    /// Принятие запроса на подключение клиента.
+    /// </summary>
     private async void OnServerAcceptedClient(object? sender, IClient client)
     {
         var drives = Directory.GetLogicalDrives();

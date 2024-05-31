@@ -27,6 +27,9 @@ public class Server : IServer
         _server.Listen(10);
     }
 
+    /// <summary>
+    /// Начинаем прослушивать клиентов.
+    /// </summary>
     public Task StartListeningAsync()
     {
         _listening = true;
@@ -46,6 +49,9 @@ public class Server : IServer
         });
     }
 
+    /// <summary>
+    /// Отправить сообщение всем клиентам сразу.
+    /// </summary>
     public Task SendMessageAsync(string message)
     {
         return Task.Run(async () =>
@@ -61,6 +67,9 @@ public class Server : IServer
         });
     }
 
+    /// <summary>
+    /// Отправить сообщение конкретному клиенту.
+    /// </summary>
     public Task SendMessageAsync(string message, IClient client)
     {
         return Task.Run(async () =>
@@ -75,6 +84,9 @@ public class Server : IServer
         });
     }
 
+    /// <summary>
+    /// Добавить клиента во внутренний список сервера и настроить его прослушивание.
+    /// </summary>
     public async Task<bool> AddClientAsync(IClient client)
     {
         if (_clients.Contains(client)) return false;
@@ -106,6 +118,9 @@ public class Server : IServer
         return true;
     }
 
+    /// <summary>
+    /// Перестать прослушивать клиента.
+    /// </summary>
     public async Task<bool> RemoveClientAsync(Guid id)
     {
         IClient? client = _clients.FirstOrDefault(c => c.Id == id);

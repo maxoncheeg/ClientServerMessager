@@ -17,6 +17,9 @@ public class Client(Guid id, string name, Socket socket) : IClient
     {
     }
 
+    /// <summary>
+    /// Подключиться к серверу.
+    /// </summary>
     public async Task<bool> Connect(IPAddress address, int port)
     {
         try
@@ -53,6 +56,10 @@ public class Client(Guid id, string name, Socket socket) : IClient
         return true;
     }
 
+    
+    /// <summary>
+    /// Отправить сообщение серверу.
+    /// </summary>
     public Task SendMessageAsync(string message)
     {
         return Task.Run(async () =>
